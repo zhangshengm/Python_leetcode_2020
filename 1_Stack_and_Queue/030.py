@@ -13,9 +13,9 @@ class MinStack:
         self.s1.append(x)
 
     def pop(self) -> None:
-        t=self.s1[-1]
+
         del self.s1[-1]
-        return t
+    
 
     def top(self) -> int:
         return self.s1[-1]
