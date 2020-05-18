@@ -1,5 +1,6 @@
 # 队列实现栈
 # First answer
+# 一个队列一边增加一边逆序
 class MyStack:
 
     def __init__(self):
