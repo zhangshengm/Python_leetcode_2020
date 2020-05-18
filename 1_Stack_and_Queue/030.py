@@ -1,4 +1,6 @@
 # First answer
+#Execution time nearly：1308 ms
+#Consumed memory nearly: 16.8 MB
 class MinStack:
 
     def __init__(self):
