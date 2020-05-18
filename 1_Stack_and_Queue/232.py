@@ -1,4 +1,6 @@
-
+#First answer:
+#Execution time nearly：40 ms
+#Consumed memory nearly: 13.7 MB
 class MyQueue:
 
     def __init__(self):
