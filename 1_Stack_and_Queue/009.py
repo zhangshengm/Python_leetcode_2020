@@ -6,6 +6,7 @@ class CQueue:
     def __init__(self):
         self.s1=[]
         self.s2=[]
+        
     def appendTail(self, value: int) -> None:
         self.s1.append(value)
         
@@ -23,10 +24,10 @@ class CQueue:
     def __init__(self):
         self.s1=[]
         self.s2=[]
+        
     def appendTail(self, value: int) -> None:
         self.s1.append(value)
-
-
+        
     def deleteHead(self) -> int:
         if self.s2:
             return self.s2.pop()
