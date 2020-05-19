@@ -1,3 +1,4 @@
+#考虑栈底的k个元素与栈的长度大小以及栈是否为空，有三种情况
 class CustomStack:
 
     def __init__(self, maxSize: int):
