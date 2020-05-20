@@ -33,3 +33,23 @@ class Solution:
             j=i
         #拼接字符列表为字符串
         return ' '.join(each)
+# Third answer
+class Solution:
+    def reverseWords(self, s: str) -> str:
+
+        #下标值[0,len-1]
+        i=j=len(s)-1
+        each=[]
+        while i>=0:
+            #找到首个非空格元素
+            while i>=0 and s[i]==' ': i=i-1
+            j=i
+            #找到串中间首个空格下标
+            while i>=0 and s[i]!=' ': i=i-1
+            #添加单词
+            #考虑到首部有空格情况
+            if j>=0:
+               each.append(s[i+1:j+1])
+       
+        #拼接字符列表为字符串
+        return ' '.join(each)
