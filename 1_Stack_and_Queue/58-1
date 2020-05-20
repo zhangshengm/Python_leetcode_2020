@@ -1,5 +1,6 @@
 #字符串去除首尾空格，以及去除连续的空格
 #字符串转列表，列表转字符串
+#First answer
 class Solution:
     def reverseWords(self, s: str) -> str:
         #去除字符串的首尾空格
@@ -14,3 +15,21 @@ class Solution:
             s2.append(s1.pop())
             t=t-1
         return ' '.join(s2)
+#Second answer
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        #删除字符串首尾空格
+        s=s.strip()
+        #下标值[0,len-1]
+        i=j=len(s)-1
+        each=[]
+        while i>=0:
+            #找到首个空格下标
+            while i>=0 and s[i]!=' ': i=i-1
+            #添加单词
+            each.append(s[i+1:j+1])
+            #跳过连续的空格
+            while s[i]==' ': i=i-1
+            j=i
+        #拼接字符列表为字符串
+        return ' '.join(each)
