@@ -27,3 +27,28 @@ class Solution:
               if t1 and flag%2==1: s1.append(t1)
               s2=t
         return s1
+   
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        flag,s1=0,[]
+        #如果树为空，返回空列表
+        if not root: return s1
+        #注意考虑节点和节点的值得区别
+        s2=deque()
+        s2.append(root)
+        while s2:
+            t2=deque()
+            num=len(s2)
+            flag+=1
+            for i in range(num):
+               node=s2.popleft()
+               if flag%2==1:     t2.append(node.val) 
+               if flag%2==0:     t2.appendleft(node.val)
+            
+               if node.left: 
+                  s2.append(node.left)
+               if node.right: 
+                  s2.append(node.right)
+            # s2=t
+            s1.append(list(t2))
+        return s1
