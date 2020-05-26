@@ -27,3 +27,19 @@ class Solution:
                    s1.append(node.right.val)
               s2=t
         return s1
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[int]:
+
+        s1=[]
+        #如果树为空，返回空列表
+        if not root: return s1
+        #注意考虑节点和节点的值得区别
+        s2=deque()
+        s2.append(root)
+        while s2:
+            node=s2.popleft()
+            s1.append(node.val)
+            if node.left: s2.append(node.left)
+            if node.right: s2.append(node.right)
+        return s1
