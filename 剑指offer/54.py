@@ -33,3 +33,38 @@ class Solution:
         
         recur(root)
         return res[len(res)-k]
+
+class Solution:
+    #中序遍历的倒序（第几大），返回第K-1个值,只存到第k-1个值
+    def kthLargest(self, root: TreeNode, k: int) -> int:
+        self.k=k
+        res=[]
+        def recur(root):
+            if not root: return
+            if len(res)==self.k:
+               return
+            recur(root.right)
+            res.append(root.val)
+            recur(root.left)
+        
+        recur(root)
+        return res[k-1]
+    
+ class Solution:
+    #中序遍历的倒序，只存满足要求的一个值
+    def kthLargest(self, root: TreeNode, k: int) -> int:
+        self.k=k
+        self.res=0
+        def recur(root):
+            if not root: return
+            #如果找到了第K大的值，则返回
+            if self.k==0: return
+            recur(root.right)
+            self.k-=1
+            #如果找到了第K大的值，赋值给当前值
+            if self.k==0: 
+                self.res=root.val
+            recur(root.left)
+        
+        recur(root)
+        return self.res
