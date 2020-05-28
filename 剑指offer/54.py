@@ -21,3 +21,15 @@ class Solution:
         res.sort()
         return res[len(res)-k]
 
+class Solution:
+    #中序遍历，返回K大的节点值
+    def kthLargest(self, root: TreeNode, k: int) -> int:
+        res=[]
+        def recur(root):
+            if not root: return
+            recur(root.left)
+            res.append(root.val)
+            recur(root.right)
+        
+        recur(root)
+        return res[len(res)-k]
