@@ -22,3 +22,18 @@ class Solution:
                     return False
               s1=t
         return True
+
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        #空树是一颗平衡二叉树
+        
+        def recur(node):
+           if not node: return 0
+           left=recur(node.left) 
+           #其中一个节点不满足保证（长度-(-1)）大于等于2，减少很多判断
+           if left==-1: return -1
+           right=recur(node.right)
+           if right==-1:return -1
+           return max(left,right)+1 if abs(left-right)<=1 else -1
+
+        return recur(root)!=-1
