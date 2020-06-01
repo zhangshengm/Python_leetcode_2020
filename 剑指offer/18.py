@@ -21,3 +21,16 @@ class Solution:
               if flag==0:
                   t.next=after
                   flag=1
+#双指针遍历
+class Solution:
+    def deleteNode(self, head: ListNode, val: int) -> ListNode:
+        #如果是首节点，返回之后的节点
+        if head.val == val: return head.next
+        #第一个节点和第二个节点
+        pre, cur = head, head.next
+        #找到删除的节点
+        while cur and cur.val != val:
+            pre, cur = cur, cur.next
+        #删除该节点
+        if cur: pre.next = cur.next
+        return head
