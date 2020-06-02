@@ -2,7 +2,7 @@ class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         #建立伪节点
         a=ListNode(0)
-        #右边保存头节点，左边遍历
+        #右(左)边保存头节点，左(右)边遍历
         b=a
         while l1 and l2:
               if l1.val >l2.val:
