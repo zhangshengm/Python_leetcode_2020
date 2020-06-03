@@ -49,3 +49,24 @@ class Solution:
             return node
         Build={}
         return dfs(head)
+    
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        
+        def clonenode(head):
+            if not head: return None
+            if head in Build:
+                return Build[head]
+            else:
+                t=Node(head.val,None,None)
+                Build[head]=t
+                return  Build[head]
+        if not head: return head
+        Build,node={},head
+        n=Node(head.val,None,None)
+        Build[node]=n
+        while node:
+              Build[node].next=clonenode(node.next)
+              Build[node].random=clonenode(node.random)
+              node=node.next
+        return n
