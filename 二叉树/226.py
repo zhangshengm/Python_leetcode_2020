@@ -14,3 +14,37 @@ class Solution:
         root.left=self.invertTree(root.right)
         root.right=self.invertTree(temp)
         return root
+    
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root: return root
+        head=[root]
+        while head:
+              s1=[]
+              for node in head:
+                  t=node.left
+                  node.left=node.right
+                  node.right=t
+                  if node.left:
+                      s1.append(node.left)
+                  if node.right:
+                      s1.append(node.right)
+              head=s1
+        return root
+    
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root: return root
+       
+        head=[root]
+        while head:
+              node=head.pop()
+            #   t=node.left
+              node.left,node.right=node.right,node.left
+            #   node.right=t
+              if node.left:
+                      head.append(node.left)
+              if node.right:
+                      head.append(node.right)
+
+        return root
