@@ -1,0 +1,20 @@
+class Solution:
+    def cuttingRope(self, n: int) -> int:
+        if n<=3:
+            return n-1
+        s1={}
+        #已经至少保证为两段了，这几个为基本单位
+        s1[0]=0
+        s1[1]=1
+        s1[2]=2
+        s1[3]=3
+        #长度从4取到n
+        for i in range(4,n+1):
+            max=0
+            #j从1取到i/2+1
+            for j in range(1,int(i/2)+1):
+                temp=s1[j]*s1[i-j]
+                if temp >max:
+                    max=temp
+            s1[i]=max
+        return s1[n]
