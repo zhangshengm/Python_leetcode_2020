@@ -18,3 +18,19 @@ class Solution:
                     max=temp
             s1[i]=max
         return s1[n]
+        
+class Solution:
+    def cuttingRope(self, n: int) -> int:
+        if n<=3:
+            return n-1
+        #把绳子尽可能切分成每段长度为3的段数，能取得最大值
+        b=n%3
+        #刚好分成3的整数段
+        if b==0:
+            return 3**(int(n/3))
+        #一个3+1分成2*2
+        elif b==1:
+            return 3**(int(n/3)-1)*2*2
+        #直接乘以余数
+        else:
+              return 3**(int(n/3))*2
