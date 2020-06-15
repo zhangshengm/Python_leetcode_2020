@@ -13,3 +13,21 @@ class Solution:
                 else:
                     dp[i][j]=min(dp[i-1][j],dp[i][j-1])+grid[i-1][j-1]
         return dp[-1][-1]
+    
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        if not grid: return 0
+        m=len(grid)
+        n=len(grid[0])
+        for i in range(0,m):
+            for j in range(0,n):
+                temp=grid[i][j]
+                if i==0:
+                    if j>=1:
+                        grid[i][j]=grid[i][j-1]+temp
+                elif j==0:
+                    if i>=1:
+                        grid[i][j]=grid[i-1][j]+temp
+                else:
+                    grid[i][j]=min(grid[i-1][j],grid[i][j-1])+temp
+        return grid[-1][-1]
