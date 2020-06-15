@@ -1,3 +1,4 @@
+class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         s, p = '#'+s, '#'+p
         m, n = len(s), len(p)
@@ -17,6 +18,32 @@
                 # dp[i-1][j]判断*之前的p的字符与s的字符是否相等
                 elif p[j] == '*':
                     dp[i][j] = j > 1 and dp[i][j-2] or p[j-1] in [s[i], '.'] and dp[i-1][j]
+                else:
+                    dp[i][j] = False
+        return dp[-1][-1]
+
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+ 
+        s, p = '#'+s, '#'+p
+        m, n = len(s), len(p)
+        dp = [[False]*n for _ in range(m)]
+        dp[0][0] = True
+        
+        for i in range(m):
+            for j in range(1, n):
+     
+                if i == 0:
+                    if j>=2:
+                        dp[i][j]=dp[i][j-2] and p[j]=='*'
+                elif p[j] in [s[i], '.']:
+                     dp[i][j]=dp[i-1][j-1]
+                
+                #dp[i][j-2]代表当前*取0,元素不展开 
+                #dp[i-1][j]为True代表*往后展开, p[j-1] in [s[i],'.'] 再判断展开的元素是否和字符串匹配
+                elif p[j] == '*':
+                    #  j>=2 and (dp[i][j-2] or)
+                     dp[i][j]=  (j>=2 and dp[i][j-2]) or (p[j-1] in [s[i],'.']  and  dp[i-1][j])
                 else:
                     dp[i][j] = False
         return dp[-1][-1]
