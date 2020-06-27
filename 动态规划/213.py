@@ -16,3 +16,20 @@ class Solution:
                 dp[i]=max(dp[i-2]+nums[i-1],dp[i-1])
             return max(dp)
         return max(findmax(nums[1:]),findmax(nums[:-1]))
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+      if not nums: return 0
+      if len(nums)==1: return nums[0]
+
+      def rob1(nums):
+         #pre代表dp[i-2]
+         #左边的cur代表dp[i]，右边的cur代表dp[i-1]
+         #状态转移方程 dp[i]=max(dp[i-1],dp[i-2]+num[i-1])
+         cur, pre = 0, 0
+         for num in nums:
+            #先调用，再赋值
+            cur,pre=max(cur,pre + num),cur
+         return cur
+
+      return max(rob1(nums[1:]),rob1(nums[:-1])) 
