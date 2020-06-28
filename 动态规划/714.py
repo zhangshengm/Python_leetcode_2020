@@ -11,3 +11,17 @@ class Solution:
            dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i]-fee)
            dp[i][1]=max(dp[i-1][1],dp[i-1][0]-prices[i])
        return dp[-1][0]
+
+class Solution:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+       if len(prices)<=1: return 0
+       #没有持有股票的利润
+       nothave=0
+       #持有股票的利润
+       have=-prices[0]
+    
+       for i in range(1,len(prices)):
+           nothave=max(have+prices[i]-fee,nothave)
+           have=max(have,nothave-prices[i])
+         
+       return nothave
