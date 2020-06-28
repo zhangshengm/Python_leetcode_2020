@@ -12,5 +12,6 @@ class Solution:
        dp[1][1]=max(dp[0][1],dp[0][0]-prices[1])
        for i in range(2,len(prices)):
            dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i])
+           #如果当天要买股票，状态从i-2处转移过来，当i-2卖了股票,i-1为冷冻期，不能操作
            dp[i][1]=max(dp[i-1][1],dp[i-2][0]-prices[i])
        return dp[-1][0]
