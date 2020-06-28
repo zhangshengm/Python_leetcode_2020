@@ -17,3 +17,15 @@ class Solution:
            minv=min(minv,i)
            maxv=max(maxv,i-minv)
        return maxv
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+       if not prices: return 0
+       minv=prices[0]
+       #dp[i]代表第i天的最大利润
+       dp=[0]*(len(prices)+1)
+       dp[1]=0
+       for i in range(1,len(prices)):
+           minv=min(minv,prices[i])
+           dp[i+1]=max(dp[i],prices[i]-minv)
+       return dp[-1]
