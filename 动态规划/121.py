@@ -12,7 +12,7 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
        minv=float('inf')
        maxv=0
-       #当前值减去最小值
+       #当前值减去局部最小值
        for i in prices:
            minv=min(minv,i)
            maxv=max(maxv,i-minv)
