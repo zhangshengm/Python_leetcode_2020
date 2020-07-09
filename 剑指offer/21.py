@@ -17,13 +17,15 @@ class Solution:
         #首尾双指针
         i,j=0,len(nums)-1
         while i<j:
-            #如果前为
+            #如果前为偶数，后为奇数，交换位置
             if nums[i]%2==0 and nums[j]%2!=0:
                 nums[i],nums[j]=nums[j],nums[i]
                 i+=1
                 j-=1
+            #如果前为奇数则跳过
             if nums[i]%2!=0:
                 i+=1
+            #如果后为偶数则跳过
             if nums[j]%2==0:
                 j-=1
      
