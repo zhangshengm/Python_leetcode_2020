@@ -53,3 +53,29 @@ class MedianFinder:
             return (self.s1[t//2]+self.s1[t//2-1])/2
         else:
             return self.s1[t//2]
+        
+class MedianFinder:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        #A[0]是A中最小值
+        #B[0]是B中最大值
+        self.A=[]
+        self.B=[]
+
+    def addNum(self, num: int) -> None:
+        if len(self.A)==len(self.B):
+            heappush(self.B,-num)
+            #-heappop(self.B)即为B中最大值
+            heappush(self.A,-heappop(self.B))
+        else:
+            heappush(self.A,num)
+            #heappop(self.A)为A中最小值
+            heappush(self.B,-heappop(self.A))
+
+    def findMedian(self) -> float:
+        return self.A[0] if (len(self.A)+len(self.B))%2==1 else (self.A[0]-self.B[0])/2
+
+
