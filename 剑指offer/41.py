@@ -78,4 +78,27 @@ class MedianFinder:
     def findMedian(self) -> float:
         return self.A[0] if (len(self.A)+len(self.B))%2==1 else (self.A[0]-self.B[0])/2
 
+class MedianFinder:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        #A[0]是A中最小值
+        #B[0]是B中最大值
+        self.A=[]
+        self.B=[]
+
+    def addNum(self, num: int) -> None:
+        if len(self.A)==len(self.B):
+            #-heappop(self.B)即为B中最大值
+            heappush(self.A,-heappushpop(self.B,-num))
+        else:
+            #heappop(self.A)为A中最小值
+            heappush(self.B,-heappushpop(self.A,num))
+
+    def findMedian(self) -> float:
+        return self.A[0] if (len(self.A)+len(self.B))%2==1 else (self.A[0]-self.B[0])/2
+
+
 
