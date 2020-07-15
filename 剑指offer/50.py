@@ -16,3 +16,14 @@ class Solution:
         else:
             return " "
         return res
+
+class Solution:
+    def firstUniqChar(self, s: str) -> str:
+        if not s: return ' '
+        h={}
+        for i in s:
+            #如果新加的字符不在字典里，值为True；如果重复，值为false
+            h[i]=i not in h
+        for k,v in h.items():
+            if v: return k
+        return ' '
