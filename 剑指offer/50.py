@@ -1,0 +1,18 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> str:
+        if not s: return " "
+        hashmap={}
+        i=0
+        while i<len(s):
+            if s[i] not in hashmap:
+                hashmap[s[i]]=1
+            else:
+                hashmap[s[i]]+=1
+            i+=1
+        #如果出现次数为1的字符存在
+        if 1 in hashmap.values():
+           #index返回第一个匹配项
+           res=list(hashmap.keys())[list(hashmap.values()).index(1)]
+        else:
+            return " "
+        return res
