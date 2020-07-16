@@ -17,6 +17,5 @@ class Solution:
             #如果数组某位置的值等于该位置，说明缺失值在位置之前
             else:
                 j=mid-1
-        
         return j+1
         
