@@ -32,3 +32,16 @@ class Solution:
                  else:
                      i+=1
 
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        i,j=0,len(nums)-1
+        while i<=j:
+              t=nums[i]+nums[j]
+          
+              if t==target:
+                     return [nums[i],nums[j]]
+              elif t>target:
+                     j-=1
+              else:
+                     i+=1
+        
