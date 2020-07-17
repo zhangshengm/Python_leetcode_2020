@@ -21,5 +21,12 @@ class Solution:
           
         return "".join(res)
         
-
+class Solution:
+    def reverseLeftWords(self, s: str, n: int) -> str:
+        res=""
+        for i in range(n,n+len(s)):
+            res+=s[i%len(s)]
+          
+        return res
+        
         
