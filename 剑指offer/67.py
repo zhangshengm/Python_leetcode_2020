@@ -95,3 +95,52 @@ class Solution:
             return 0
         final=sums(tmp,sign)
         return final
+
+class Solution:
+    def strToInt(self, str: str) -> int:
+        #判断是否超出界限
+        def maxminv(n,sign):
+            if sign==1:
+                if  n>self.r:
+                    return False
+            else:
+                if -n<self.l:
+                    return False
+            return True
+
+        flag=2**31
+        self.l,self.r=-flag,flag-1
+        #f为下标位置,sign为符号位
+        final,sign=0,1
+        res=0
+        #删除首尾空格字符
+        str=str.strip()
+        #如果全为空格
+        if not str: return 0
+        #如果第一个非空字符是加减号
+        if str[0] in ['+','-']:
+           if str[0]=='+': sign=1
+           else: sign=-1
+           t=1
+           while t<len(str) and '0'<=str[t] <='9':
+                 res=res*10+(ord(str[t])-ord('0'))
+                 if not maxminv(res,sign):
+                    return self.r if sign==1 else self.l
+                 t+=1
+           #如果只有符号位
+           if res==0: return 0   
+        
+
+        elif  '0'<=str[0]<='9':
+              t=0
+              while t<len(str) and '0'<=str[t]<='9':
+                  res=res*10+(ord(str[t])-ord('0'))
+                  if not maxminv(res,sign):
+                    return self.r if sign==1 else self.l
+                  t+=1
+            
+        #如果第一个非空字符不是数字或者加减号
+        else:
+            return 0
+        
+        return sign*res
