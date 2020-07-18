@@ -42,3 +42,56 @@ class Solution:
             return l
         else:
             return int(tmp)
+        
+class Solution:
+    def strToInt(self, str: str) -> int:
+        #返回计算值，如果越界则返回最大值或最小值
+        def sums(s,sign):
+            res=0
+            t=len(s)-1
+            while t>=0:
+                res+=(ord(s[len(s)-1-t])-ord('0'))*(10**(t))
+                t-=1
+                if sign==1:
+                   if res >self.r:
+                     return self.r
+                else:
+                   if -res <self.l:
+                      return self.l
+            return res if sign==1 else -res
+                  
+        tmp,flag="",2**31
+        self.l,self.r=-flag,flag-1
+        #f为下标位置,sign为符号位
+        final,sign,t=0,1,1
+        #删除首尾空格字符
+        str=str.strip()
+        #如果全为空格
+        if not str: return 0
+        #如果第一个非空字符是加减号
+        if str[0] in ['+','-']:
+           if str[0]=='+':
+               sign=1
+           else:
+               sign=-1
+           t=1
+           while t<len(str) and '0'<=str[t] <='9':
+                    t+=1
+           #如果符号位后是整数
+           if t>1:
+              tmp=str[1:t]
+           #如果符号位后是整数
+           else:
+              return 0
+
+        elif  '0'<=str[0]<='9':
+              t=1
+              while t<len(str) and '0'<=str[t]<='9':
+                    t+=1
+              tmp=str[0:t]
+
+        #如果第一个非空字符不是数字或者加减号
+        else:
+            return 0
+        final=sums(tmp,sign)
+        return final
