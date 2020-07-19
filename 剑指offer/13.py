@@ -9,11 +9,9 @@ class Solution:
             return res
         def sumvalue(m,n):
             t=0
-            while m:
-                t+=m%10
+            while m or n:
+                t+=(m%10+n%10)
                 m=m//10
-            while n:
-                t+=n%10
                 n=n//10
             return t
         #代表记录的总格数
