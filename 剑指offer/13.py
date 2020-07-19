@@ -20,3 +20,29 @@ class Solution:
         flag+=DFS(0,0)
                     
         return flag
+
+class Solution:
+    def movingCount(self, m: int, n: int, k: int) -> int:
+        def sumvalue(m,n):
+            t=0
+            while m or n:
+                t+=(m%10+n%10)
+                m=m//10
+                n=n//10
+            return t
+        flag,i,j=0,0,0
+        queue,visited=set(),set()
+        queue.add((0,0))
+        while queue:
+              t=queue.pop()
+              #如果该结点访问过或者数位之和超出k，则跳过操作
+              if (t[0],t[1]) in visited or sumvalue(t[0],t[1]) >k: continue
+              #访问该结点
+              visited.add((t[0],t[1]))
+              #此时必有sumvalue(t[0],t[1]) <=k
+              flag+=1
+              if t[0]+1<m:
+                 queue.add((t[0]+1,t[1]))
+              if t[1]+1<n:
+                  queue.add((t[0],t[1]+1))                  
+        return flag
