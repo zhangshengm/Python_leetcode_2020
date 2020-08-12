@@ -1,0 +1,20 @@
+class Solution:
+    def oneEditAway(self, first: str, second: str) -> bool:
+        if first==second:
+           return True
+        elif abs(len(first)-len(second))>=2:
+           return False
+        else:
+           i=0
+           lf,ls=len(first)-1,len(second)-1
+           while i <=lf and i<=ls and first[i]==second[i]:
+                 i+=1
+           while lf>=0 and ls>=0 and first[lf]==second[ls]:
+                 lf-=1
+                 ls-=1
+           #first[i:lf]和second[i:ls]长度均小于零时，可以编辑
+           #单独考虑插入（删除）和替换的情况，从中找出规律
+           if lf-i<1 and ls-i<1:
+              return True
+           else: 
+               return False
