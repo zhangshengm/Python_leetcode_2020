@@ -18,3 +18,15 @@ class Solution:
                       tmp=t-nums.popleft()
               i-=1
         return flag
+
+from collections import deque
+class Solution:
+    def consecutiveNumbersSum(self, N: int) -> int:
+        tmp=0
+        y=int((2*N)**(1/2))+1
+        for k in range(1,y):
+            if 2*N%k==0:
+               x=(2*N/k-k-1)
+               if x%2==0 and x>=0:
+                  tmp+=1
+        return tmp
