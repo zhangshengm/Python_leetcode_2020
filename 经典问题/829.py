@@ -23,6 +23,8 @@ from collections import deque
 class Solution:
     def consecutiveNumbersSum(self, N: int) -> int:
         tmp=0
+        # (x+1)(x+2)(x+k)=N, (x+1+x+k)(k)/2=N
+        #2N=k(2x+k+1), k<2N**(1/2)
         y=int((2*N)**(1/2))+1
         for k in range(1,y):
             if 2*N%k==0:
