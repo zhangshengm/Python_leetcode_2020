@@ -12,15 +12,24 @@ class Solution:
         return DFS(None,head)
         
         
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
 class Solution:
-    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+    def reverseList(self, head: ListNode) -> ListNode:
+        res=[]
+        #保存所有节点的值
+        while head:
+            res.append(head.val)
+            head=head.next
         a=ListNode(0)
-        b=a
-        while l1 and l2:
-              if l1.val>l2.val:
-                 b.next,l2=l2,l2.next
-              else:
-                 b.next,l1=l1,l1.next
-              b=b.next
-        b.next= l1 if l1 else l2
+        c=a
+        while res:
+              b=ListNode(res.pop())
+              c.next=b
+              c=c.next
+        c.next=None
         return a.next
