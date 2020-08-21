@@ -16,3 +16,25 @@ class Solution:
         #第二个节点指向第一个节点
         second.next=first
         return second
+
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        new=ListNode(0)
+        new.next=head
+        pre=new
+        #head不为最后一个非空节点,循环
+        while head and head.next:
+              #找到第一个和第二个节点
+              first=head
+              second=head.next
+              
+              #指向交换后的第一个节点
+              pre.next=second
+              #保存第三个节点
+              first.next=second.next
+              #第二个节点指向第一个节点
+              second.next=first
+
+              pre=first
+              head=first.next
+        return new.next     
