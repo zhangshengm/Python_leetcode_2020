@@ -33,3 +33,15 @@ class Solution:
               c=c.next
         c.next=None
         return a.next
+    
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if not head.next:
+           return head
+        #找到最后一个非空节点，并返回
+        nextnode=self.reverseList(head.next)
+        #每次递归找到当前节点和上一个节点。当前节点指向上一个节点
+        head.next.next=head
+        #上一个节点指向空
+        head.next=None
+        return nextnode
