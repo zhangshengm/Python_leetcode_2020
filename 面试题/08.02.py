@@ -51,5 +51,50 @@ class Solution:
                 return []
             else:
                 return res[0]
+  # dp=[[0]*(c+1) for _ in range(r+1)]
+        # if obstacleGrid[0][0]==0:
+        #     dp[0][0]=1
+        # else: 
+        #     return []
+        # for i in range(r+1):
+        #     for j in range(c+1):
+        #         if i==0 and j>=1:
+        #             if obstacleGrid[i][j]==0 and dp[i][j-1]==1:
+        #                dp[i][j]=1
+        #         elif j==0 and i>=1:
+        #             if obstacleGrid[i][j]==0 and dp[i-1][j]==1:
+        #                dp[i][j]=1
+        #         else:
+        #             if obstacleGrid[i][j-1]!=1 or obstacleGrid[i-1][j]!=1:
+        #                 if obstacleGrid[i][j]==0:
+        #                     dp[i][j]=1
+        
+class Solution:
+    def pathWithObstacles(self, obstacleGrid: List[List[int]]) -> List[List[int]]:
+        def DFS(x,y,tmp):
+          #如果没有可达路径，计算，否则剪枝，不计算
+          if not res:
+            #该点无障碍
+            if obstacleGrid[x][y]==0:
+               obstacleGrid[x][y]=1
+               if x+1<=r and y<=c:
+                  DFS(x+1,y,tmp+[[x+1,y]])
+               if x<=r and y+1<=c:
+                  DFS(x,y+1,tmp+[[x,y+1]])
+               if x==r and y==c:
+                  res.append(tmp)
+                  return 
+        if not obstacleGrid: return []
+        res=[]
+        r=len(obstacleGrid)-1
+        c=len(obstacleGrid[0])-1
+        if obstacleGrid[0][0]==1:
+            return []
+        else:
+            DFS(0,0,[[0,0]])           
+            if not res:
+                return []
+            else:
+                return res[0]
 
                 
