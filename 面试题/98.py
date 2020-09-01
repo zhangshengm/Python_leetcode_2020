@@ -31,7 +31,9 @@ class Solution:
                root=nums.pop()
                if root.val<=pre:
                    return False
+               #当前节点值变成前一个节点的值
                pre=root.val
+               #如果当前节点有右节点，当前节点变为右节点；如果没有root=None,循环为下一个左节点
                root=root.right
         return True
         
