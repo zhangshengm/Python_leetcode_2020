@@ -48,3 +48,55 @@ class Solution:
             if flag: return True
                   
         return flag
+
+    
+    
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+
+        self.row,self.col=len(board),len(board[0])
+        def DFS(ri,length):
+            if length==len(word):
+                return True
+            r,c=ri[0],ri[1]
+            tmp=board[r][c]
+            board[r][c]=""
+            t=[]
+            if r+1<self.row:
+               if board[r+1][c]==word[length]:
+                  t.append([r+1,c])
+            if c+1<self.col:
+               if board[r][c+1]==word[length]:
+                   t.append([r,c+1])
+            if r-1>=0:
+               if board[r-1][c]==word[length]:
+                   t.append([r-1,c])
+            if c-1>=0:
+               if board[r][c-1]==word[length]:     
+                   t.append([r,c-1])   
+            for t1 in t: 
+                if DFS(t1,length+1): return True
+            board[r][c]=tmp
+            
+            return False
+
+            
+
+        #单元格或者搜索的单词为空
+        if not word or not board: return False
+        #首先确定第一个单词的位置
+        res=[]
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j]==word[0]:
+                    res.append([i,j])
+
+        for ri in res:
+            if DFS(ri,1): return True
+        return False
+
+
+
+
+        
+   
