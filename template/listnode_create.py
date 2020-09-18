@@ -29,3 +29,20 @@ class Solution:
             else:
                 node2=headA
         return node1
+    
+    
+    #合并两个有序列表: 建立伪节点，如果都非空，则小的节点的值建立新节点，建立链接关系；如果有一个为空，则指向另一个非空链表
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        b=ListNode(-1)
+        a=b
+        while l1 and l2:
+              if l1.val<=l2.val:
+                 tmp=ListNode(l1.val)
+                 l1=l1.next
+              else:
+                 tmp=ListNode(l2.val)
+                 l2=l2.next
+              a.next=tmp
+              a=a.next
+        a.next=l1 if l1 else l2
+        return b.next
