@@ -46,3 +46,12 @@ class Solution:
               a=a.next
         a.next=l1 if l1 else l2
         return b.next
+     #链表倒数第k个节点，双指针遍法
+     def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
+        if not head: return None
+        before,after=head,head
+        for i in range(k):
+            after=after.next
+        while after:
+            before,after=before.next,after.next
+        return before
