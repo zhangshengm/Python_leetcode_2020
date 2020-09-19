@@ -97,5 +97,14 @@ class Solution:
         while after:
             before,after=before.next,after.next
         return before
-    
+     #判断某个链表是否有环：快慢指针，快的指针肯定会追上慢的指针，套圈问题
+     def hasCycle(self, head: ListNode) -> bool:
+        if not head: return False
+        low=head
+        fast=head.next
+        while fast and fast.next:
+             if fast==low: return True
+             low=low.next
+             fast=fast.next.next
+        return False
     
