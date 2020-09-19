@@ -23,3 +23,30 @@ while i<=N:
 print(int(N*k-res))
 end=datetime.datetime.now()
 print(end-start)
+
+
+import datetime
+start=datetime.datetime.now()
+N=10000000
+k=N
+res1=0
+for i in range(1,N+1):
+    res1+=i*(N%i)
+print(res1)
+
+i=1
+res=0
+while i<=N:
+    q=N//i
+    if q==0: break
+    r=min(N//q,N)
+    tmp=0
+    for k in range(i,r+1):
+        tmp+=k*k
+    res+=tmp*q
+    i=r+1
+
+print(int(N*N*(1+N)/2-res))
+
+end=datetime.datetime.now()
+print(end-start)
