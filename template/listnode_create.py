@@ -122,6 +122,20 @@ class Solution:
         
         return self.hasCycle(head.next)
 
-    #环形链表 II,找到环开始的第一个节点
-    
+    #环形链表 II,找到环开始的第一个节点,a为不是环的节点数，b为环的节点数，f(s)为快(慢)节点走过的节点数，f=2s,f=s+nb，s=nb,nb+a=head+a,此时走到环的第一个节点。
+     def detectCycle(self, head: ListNode) -> ListNode:
+        low=fast=head 
+        #走完之后，判断是否相等 
+        while True:
+            #如果没环，直接返回None
+            if not fast or not fast.next: return None
+            low=low.next
+            fast=fast.next.next
+            #如果有环直接跳出循环
+            if low==fast: break
+        fast=head
+        while fast!=low:
+              low=low.next
+              fast=fast.next
+        return fast
    
