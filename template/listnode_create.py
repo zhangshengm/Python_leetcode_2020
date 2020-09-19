@@ -64,7 +64,31 @@ class Solution:
             a.next=tmpnode
             a=a.next
         return headnode.next
-    
+
+    #合并k个有序列表,用最小堆实现,O(n*logk),k为链表的个数
+    import heapq
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        if not lists: return None
+        t=len(lists)
+        res=[]
+        for index,i in enumerate(lists):
+            #index为对应的链表
+            #堆中按val值得大小存放(val,index)
+            if i:
+                heapq.heappush(res,(i.val,index))
+        
+        tmp=headnode=ListNode(-1)
+        while res:
+              v,index=heapq.heappop(res)
+              #指向值最小的节点
+              tmp.next=lists[index]
+              tmp=tmp.next
+              #index对应的链表指向下一个节点
+              lists[index]=lists[index].next
+              if lists[index]:
+                 heapq.heappush(res,(lists[index].val,index)) 
+        return headnode.next
+
      #链表倒数第k个节点，双指针遍法
      def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
         if not head: return None
