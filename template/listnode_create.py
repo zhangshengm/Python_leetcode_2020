@@ -100,14 +100,16 @@ class Solution:
 
      #判断某个链表是否有环：快慢指针，快的指针肯定会追上慢的指针，套圈问题
      def hasCycle(self, head: ListNode) -> bool:
-        if not head: return False
-        low=head
-        fast=head.next
-        while fast and fast.next:
-             if fast==low: return True
+       if not head: return False
+        low=fast=head 
+        #走完之后，判断是否相等 
+        while True:
+             #如果链表无环，返回False
+             if not fast or not fast.next: return False
              low=low.next
-             fast=fast.next.next
-        return False
+             fast=fast.next.next    
+             #如果链表有环，返回True
+             if fast==low: return True
     
     #判断某个链表是否有环：赋值法，将走过的点的val值标记，如果重复走过点，返回True
     def hasCycle(self, head: ListNode) -> bool:
@@ -119,3 +121,7 @@ class Solution:
                 head.val="abcd"
         
         return self.hasCycle(head.next)
+
+    #环形链表 II,找到环开始的第一个节点
+    
+   
