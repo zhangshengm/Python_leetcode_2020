@@ -97,6 +97,7 @@ class Solution:
         while after:
             before,after=before.next,after.next
         return before
+
      #判断某个链表是否有环：快慢指针，快的指针肯定会追上慢的指针，套圈问题
      def hasCycle(self, head: ListNode) -> bool:
         if not head: return False
@@ -108,3 +109,13 @@ class Solution:
              fast=fast.next.next
         return False
     
+    #判断某个链表是否有环：赋值法，将走过的点的val值标记，如果重复走过点，返回True
+    def hasCycle(self, head: ListNode) -> bool:
+        if not head: return False
+        if head:
+            if head.val=="abcd":
+                return True
+            else:
+                head.val="abcd"
+        
+        return self.hasCycle(head.next)
