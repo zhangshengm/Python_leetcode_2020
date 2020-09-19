@@ -76,7 +76,6 @@ class Solution:
             #堆中按val值得大小存放(val,index)
             if i:
                 heapq.heappush(res,(i.val,index))
-        
         tmp=headnode=ListNode(-1)
         while res:
               v,index=heapq.heappop(res)
