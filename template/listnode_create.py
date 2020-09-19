@@ -46,6 +46,25 @@ class Solution:
               a=a.next
         a.next=l1 if l1 else l2
         return b.next
+    
+    #合并k个有序列表,将所有列表中的值先取出放进一个list中，sort排序再依次链接，n*logn
+    if not lists: return None
+        t=len(lists)
+        res=[]
+        for i in range(t):
+            if lists[i]:
+                tmp=lists[i]
+                while tmp:
+                  res.append(tmp.val)
+                  tmp=tmp.next
+        res.sort()
+        a=headnode=ListNode(0)
+        for j in range(len(res)):
+            tmpnode=ListNode(res[j])
+            a.next=tmpnode
+            a=a.next
+        return headnode.next
+    
      #链表倒数第k个节点，双指针遍法
      def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
         if not head: return None
@@ -55,3 +74,5 @@ class Solution:
         while after:
             before,after=before.next,after.next
         return before
+    
+    
