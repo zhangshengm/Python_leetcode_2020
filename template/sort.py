@@ -91,3 +91,11 @@ def select_sort(num):
         num[i],num[min_index]=num[min_index],num[i]
     return num
 
+#冒泡排序,两两比较相邻位置，如果反序，则交换位置
+def bubble_sort(num):
+    if not num: return num
+    for i in range(len(num)):
+        for j in range(i+1,len(num)):
+            if num[j]<num[i]:       
+               num[i],num[j]=num[j],num[i]
+    return num
