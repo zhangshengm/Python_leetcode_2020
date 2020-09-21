@@ -138,4 +138,26 @@ class Solution:
               low=low.next
               fast=fast.next
         return fast
-   
+   #k个一组翻转链表
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+
+        #翻转子链表，k为翻转的元素的个数，返回新的头节点和尾结点
+        def reverse(head,k):
+            pre,cur=None,head
+            for _ in range(k):
+                cur.next,pre,cur=pre,cur,cur.next
+            return pre,head
+        pre=newnode=ListNode(0)
+        newnode.next=head
+        #头节点开始遍历
+        while pre.next:
+             #判断后面是否有k个节点,若没有直接返回
+             cur=pre.next
+             for _ in range(k):
+                 if not cur: return newnode.next
+                 cur=cur.next
+            #指向翻转后的头节点，节点更新为尾结点
+             pre.next,pre=reverse(pre.next,k)
+             #尾结点指向原链表的下一组翻转链表
+             pre.next=cur
+        return newnode.next
