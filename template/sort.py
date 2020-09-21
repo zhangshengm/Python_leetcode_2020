@@ -99,3 +99,41 @@ def bubble_sort(num):
             if num[j]<num[i]:       
                num[i],num[j]=num[j],num[i]
     return num
+
+#插入排序
+#令数组在0-0上有序（直接有序）
+#令数组在0到1上有序
+#令数组在0到2上有序
+#...
+#令数组在0到(n-1)上有序
+#保证有序的方法是在某范围内如果当前数比前一个数大，则一直与前一个数进行交换
+#交换停止的条件：a.后一个数不比前一个数小；b.前面没数了
+
+#插入排序,比较适合小规模数据或者数据本身基本有序时，比较高效。
+def insert_sort(arr):
+    if not arr:
+        return None
+    for i in range(1,len(arr)):    ###0-0范围上直接有序，不用排序，所以只要n-1次操作
+        for j in range(i,0,-1):    ###倒序比较
+            if arr[j] < arr[j-1]:
+                arr[j],arr[j-1] = arr[j-1],arr[j]
+            #一旦后当前数没有小于前一个数，那么就没有接着比较下去的必要了
+            #此时一定要break，否则比较次数会增加（增加至且固定为到1+2+...+(n-1)次），会增加时间复杂度
+            else:
+                break    
+    return arr
+
+#希尔排序则是对插入排序的改进，使得它对于大规模且无序的数据也非常有效率
+#希尔排序的基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录"基本有序"时，再对全体记录进行依次直接插入排序。也称为递减增量排序算法
+def shellSort(arr):
+    if not arr:
+        return None
+    n = len(arr)
+    group = n // 2
+    while group > 0:
+        for i in range(group, n):
+            while i >= group and arr[i] < arr[i-group]:
+                arr[i], arr[i-group] = arr[i-group], arr[i]
+                i -= group
+        group = int(group/2)
+    return arr
