@@ -161,3 +161,16 @@ class Solution:
              #尾结点指向原链表的下一组翻转链表
              pre.next=cur
         return newnode.next
+    #删除某个节点
+    def deleteNode(self, head: ListNode, val: int) -> ListNode:
+        if not head: return None
+        #如果是首节点
+        if head.val==val:
+            return head.next
+        tmp=head
+        while head and head.val!=val:
+              t1=head
+              head=head.next
+        if not head: return None
+        t1.next=head.next
+        return tmp
