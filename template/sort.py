@@ -80,7 +80,7 @@ num=[4,3,1,6,7,8,12,56]
 t=heapq_sort(num,k)
 print(t)
 
-#选择排序，每轮找最小的值，放在最前面，循环遍历
+#选择排序，每轮找最小的值，每轮找完最小值后再交换值，放在最前面，循环遍历
 def select_sort(num):
     if not num: return num
     for i in range(len(num)):
@@ -91,7 +91,7 @@ def select_sort(num):
         num[i],num[min_index]=num[min_index],num[i]
     return num
 
-#冒泡排序,两两比较相邻位置，如果反序，则交换位置
+#冒泡排序,比较一次，交换一次位置，如果反序，则交换位置
 def bubble_sort(num):
     if not num: return num
     for i in range(len(num)):
@@ -110,18 +110,17 @@ def bubble_sort(num):
 #交换停止的条件：a.后一个数不比前一个数小；b.前面没数了
 
 #插入排序,比较适合小规模数据或者数据本身基本有序时，比较高效。
-def insert_sort(arr):
-    if not arr:
-        return None
-    for i in range(1,len(arr)):    ###0-0范围上直接有序，不用排序，所以只要n-1次操作
-        for j in range(i,0,-1):    ###倒序比较
-            if arr[j] < arr[j-1]:
-                arr[j],arr[j-1] = arr[j-1],arr[j]
-            #一旦后当前数没有小于前一个数，那么就没有接着比较下去的必要了
-            #此时一定要break，否则比较次数会增加（增加至且固定为到1+2+...+(n-1)次），会增加时间复杂度
+def insert_sort(num):
+    if not num: return None
+    for i in range(1,len(num)):
+        #后一个数与前一个数比较
+        for j in range(i,0,-1):
+            if num[j]<num[j-1]:
+                num[j],num[j-1]=num[j-1],num[j]
             else:
-                break    
-    return arr
+                break
+    return num
+
 
 #希尔排序则是对插入排序的改进，使得它对于大规模且无序的数据也非常有效率
 #希尔排序的基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录"基本有序"时，再对全体记录进行依次直接插入排序。也称为递减增量排序算法
