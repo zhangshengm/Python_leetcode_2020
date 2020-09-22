@@ -161,6 +161,7 @@ class Solution:
              #尾结点指向原链表的下一组翻转链表
              pre.next=cur
         return newnode.next
+    
     #删除某个节点
     def deleteNode(self, head: ListNode, val: int) -> ListNode:
         if not head: return None
@@ -174,3 +175,25 @@ class Solution:
         if not head: return None
         t1.next=head.next
         return tmp
+    
+    
+   #归并排序链表,要求时间复杂度为O(1)
+   def sortList(self, head: ListNode) -> ListNode:
+        if not head or not head.next: return head
+        slow,fast=head,head.next
+        #low指向中间节点或者中间靠左节点
+        while fast and fast.next:
+              slow,fast=slow.next,fast.next.next
+        #分割成两块区域
+        mid,slow.next=slow.next,None
+        #继续分割
+        left,right=self.sortList(head),self.sortList(mid)
+        tmpnode=node=ListNode(0)
+        while left and right:
+            if left.val<right.val:
+               tmpnode.next,left=left,left.next
+            else:
+               tmpnode.next,right=right,right.next
+            tmpnode=tmpnode.next
+        tmpnode.next=left if left else right
+        return node.next
