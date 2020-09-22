@@ -124,15 +124,14 @@ def insert_sort(num):
 
 #希尔排序则是对插入排序的改进，使得它对于大规模且无序的数据也非常有效率
 #希尔排序的基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录"基本有序"时，再对全体记录进行依次直接插入排序。也称为递减增量排序算法
-def shellSort(arr):
-    if not arr:
-        return None
-    n = len(arr)
-    group = n // 2
-    while group > 0:
-        for i in range(group, n):
-            while i >= group and arr[i] < arr[i-group]:
-                arr[i], arr[i-group] = arr[i-group], arr[i]
-                i -= group
-        group = int(group/2)
-    return arr
+def shellsort(num):
+    if not num: return None
+    group=len(num)//2
+    while group>0:
+          for i in range(group,len(num)):
+              while i>=group and num[i]<num[i-group]: 
+                    num[i],num[i-group]=num[i-group],num[i]
+                    i-=group
+          print(num)
+          group=group//2
+    return num
