@@ -1,14 +1,13 @@
 class Solution:
-    #在数组中出现超过一半的数字，始终存在
+    #假设超过一半的元素总是存在，如果不存在只需判断maxcount_v出现的次数是否大于n/2
     def majorityElement(self, nums: List[int]) -> int:
-        index=nums[0]
-        count=1
-        for num in nums:
-            if num==index:
+        maxcount_v=0
+        count=0
+        for i in nums:
+            if count==0:
+                maxcount_v=i
+            if maxcount_v==i:
                 count+=1
             else:
                 count-=1
-            if count<=0:
-                index=num
-                count=1           
-        return index
+        return maxcount_v
